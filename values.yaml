@@ -4,7 +4,7 @@ replicas: 1
 
 containers:
  name: dagster
- image: dagster/dagster-celery-k8s
+ image: ghcr.io/miletocarmelo/devpos_helm_generic_dagster_backend/dagster:latest
  tags: latest
  ports:
    containerPort: 3000
