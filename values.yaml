@@ -1,21 +1,22 @@
-# values.yaml
 module: dagster
 environment: generic
-replicaCount: 1
+replicas: 1
+
+containers:
+ name: dagster
+ image: dagster/dagster-celery-k8s
+ tags: latest
+ ports:
+   containerPort: 3000
+ resources:
+   requests:
+     memory: "256Mi"
+     cpu: "100m"
+   limits:
+     memory: "512Mi" 
+     cpu: "200m"
+
 service:
-  type: ClusterIP
-  port: 3000
-  targetPort: 3000 
-image:
-  repository: dagster/dagster-celery-k8s
-  pullPolicy: IfNotPresent
-  tag: "latest"
-container:
-  port: 3000
-ingress:
-  enable: true
-  metadata:
-    annotations:
-      pathRewrite: /
-  spec:
-    path: /
+ type: ClusterIP
+ port: 3000
+ targetPort: http
