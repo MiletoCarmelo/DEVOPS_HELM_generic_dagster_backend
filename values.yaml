@@ -1,12 +1,21 @@
 # values.yaml
+module: dagster
+environment: generic
 replicaCount: 1
-image:
-  repository: nginx
-  pullPolicy: IfNotPresent
-  tag: "latest"
 service:
   type: ClusterIP
   port: 80
   targetPort: 80
+image:
+  repository: nginx
+  pullPolicy: IfNotPresent
+  tag: "latest"
 container:
   port: 80
+ingress:
+  enable: true
+  metadata:
+    annotations:
+      pathRewrite: /
+  spec:
+    path: /

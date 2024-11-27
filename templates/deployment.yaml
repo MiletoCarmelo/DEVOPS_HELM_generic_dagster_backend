@@ -1,21 +1,44 @@
-# templates/deployment.yaml
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ .Release.Name }}
+  labels:
+    {{-  include "label-generator" . | nindent 4 }}
+    module: {{ .Values.module }}
+  name: {{ .Values.module }}-{{ .Values.environment }}-deployment
+  namespace: {{ .Values.environment | default "generic" }}
 spec:
-  replicas: {{ .Values.replicaCount }}
+  replicas: {{ .Values.replicas }}
   selector:
     matchLabels:
-      app: {{ .Release.Name }}
+      app: {{ .Values.module }}-{{ .Values.environment }}
   template:
     metadata:
       labels:
-        app: {{ .Release.Name }}
+        app: {{ .Values.module }}-{{ .Values.environment }}
     spec:
+{{- if .Values.technicalSecret }}
+      imagePullSecrets:
+        - name: {{ .Values.technicalSecret.name }}
+{{- end}}
+{{- if .Values.containers }}
       containers:
-        - name: {{ .Chart.Name }}
-          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
-          imagePullPolicy: {{ .Values.image.pullPolicy }}
+        - name: {{ .Values.containers.name }}
+          image: {{ .Values.containers.image }}:{{ .Values.containers.tags }}
+{{- if hasSuffix "latest" .Values.containers.tags }}
+          imagePullPolicy: Always
+{{- else }}
+          imagePullPolicy: IfNotPresent
+{{- end}}
           ports:
-            - containerPort: {{ .Values.container.port }}
+            - name: http
+              containerPort: {{ .Values.containers.ports.containerPort }} # Cela doit être le port que votre app écoute
+{{- if .Values.containers.resources }}
+          resources:
+            requests:
+              memory: {{ .Values.containers.resources.requests.memory }}
+              cpu: {{ .Values.containers.resources.requests.cpu }}
+            limits:
+              memory: {{ .Values.containers.resources.limits.memory  }}
+              cpu: {{  .Values.containers.resources.limits.cpu }}
+{{- end }}
+{{- end }}
