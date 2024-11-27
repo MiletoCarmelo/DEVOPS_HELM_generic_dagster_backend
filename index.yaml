@@ -3,11 +3,11 @@ entries:
   my-application:
   - apiVersion: v2
     appVersion: 1.0.0
-    created: "2024-11-27T14:16:27.202119221Z"
+    created: "2024-11-27T14:20:27.972440893Z"
     description: A Helm chart for my application
-    digest: eb2974d4b13cd15646453ed9e0b37310eb6b5121d233bd86b3a8ec384b80b4ce
+    digest: 4419d399834f078c104bc51eabb68050aa38707d875923054d1158da43f2ca30
     name: my-application
     urls:
     - https://raw.githubusercontent.com/MiletoCarmelo/DEVPOS_HELM_generic_dagster_backend/github-pages/my-application-0.1.0.tgz
     version: 0.1.0
-generated: "2024-11-27T14:16:27.200964141Z"
+generated: "2024-11-27T14:20:27.971386404Z"
