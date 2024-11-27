@@ -1,9 +1,13 @@
 FROM python:3.11-slim
-
 ARG DAGSTER_VERSION=1.6.0
 
-# All packages are hard-pinned to `dagster`, so setting the version on just `DAGSTER` will ensure
-# compatible versions.
+# Définition de DAGSTER_HOME
+ENV DAGSTER_HOME=/opt/dagster/dagster_home
+
+# Création du répertoire DAGSTER_HOME
+RUN mkdir -p $DAGSTER_HOME
+
+# Installation des packages
 RUN pip install \
     dagster==${DAGSTER_VERSION} \
     dagster-azure \
@@ -15,3 +19,9 @@ RUN pip install \
     dagster-gcp \
     dagster-graphql \
     dagster-webserver
+
+# Commande par défaut
+CMD ["dagster-daemon", "run"]
+
+# Exposer le port
+EXPOSE 3000
