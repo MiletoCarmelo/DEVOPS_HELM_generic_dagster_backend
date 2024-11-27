@@ -6,11 +6,16 @@ on:
       - main
 
 env:
+  REGISTRY_NAME: ghcr.io
+  IMAGE_NAME: ${{ github.repository }}  # This will be in the format "owner/repo"
+  IMAGE_TAG: latest
   BRANCH_PAGES: github-pages
 
 permissions:
   contents: write
   packages: write  # Allows pushing images to the GitHub Container Registry
+
+
 
 jobs:
 
@@ -28,14 +33,19 @@ jobs:
           registry: ghcr.io
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
+      - name: Set lowercase IMAGE_NAME
+        id: set_image_name
+        run: echo "IMAGE_NAME_LOWER=$(echo '${{ github.repository }}' | tr '[:upper:]' '[:lower:]')" >> $GITHUB_ENV
+      - name: Print IMAGE_NAME
+        run: echo "${{ env.REGISTRY_NAME }}/${{ env.IMAGE_NAME }}/dagster:latest"
       - name: Build and push
         uses: docker/build-push-action@v5
         with:
           platforms: linux/amd64,linux/arm64
           push: true
           tags: |
-            ghcr.io/${{ github.repository }}/dagster:latest
-            ghcr.io/${{ github.repository }}/dagster:${{ github.sha }}
+            ${{ env.REGISTRY_NAME }}/${{ env.IMAGE_NAME }}/dagster:latest
+            ${{ env.REGISTRY_NAME }}/${{ env.IMAGE_NAME }}/dagster:${{ github.sha }}
 
   release-chart:
     needs: build-multiarch
