@@ -45,7 +45,6 @@ jobs:
           push: true
           tags: |
             ${{ env.REGISTRY_NAME }}/${{ env.IMAGE_NAME_LOWER }}/dagster:latest
-            ${{ env.REGISTRY_NAME }}/${{ env.IMAGE_NAME_LOWER }}/dagster:${{ github.sha }}
 
   release-chart:
     needs: build-multiarch
