@@ -36,16 +36,16 @@ jobs:
       - name: Set lowercase IMAGE_NAME
         id: set_image_name
         run: echo "IMAGE_NAME_LOWER=$(echo '${{ github.repository }}' | tr '[:upper:]' '[:lower:]')" >> $GITHUB_ENV
-      - name: Print IMAGE_NAME
-        run: echo "${{ env.REGISTRY_NAME }}/${{ env.IMAGE_NAME }}/dagster:latest"
+      - name: Print IMAGE_NAME_LOWER
+        run: echo "${{ env.REGISTRY_NAME }}/${{ env.IMAGE_NAME_LOWER }}/dagster:latest"
       - name: Build and push
         uses: docker/build-push-action@v5
         with:
           platforms: linux/amd64,linux/arm64
           push: true
           tags: |
-            ${{ env.REGISTRY_NAME }}/${{ env.IMAGE_NAME }}/dagster:latest
-            ${{ env.REGISTRY_NAME }}/${{ env.IMAGE_NAME }}/dagster:${{ github.sha }}
+            ${{ env.REGISTRY_NAME }}/${{ env.IMAGE_NAME_LOWER }}/dagster:latest
+            ${{ env.REGISTRY_NAME }}/${{ env.IMAGE_NAME_LOWER }}/dagster:${{ github.sha }}
 
   release-chart:
     needs: build-multiarch
