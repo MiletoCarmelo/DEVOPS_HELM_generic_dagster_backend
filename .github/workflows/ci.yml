@@ -15,7 +15,6 @@ permissions:
 jobs:
 
   build-multiarch:
-    needs: build-multiarch
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -39,6 +38,7 @@ jobs:
             ghcr.io/${{ github.repository }}/dagster:${{ github.sha }}
 
   release-chart:
+    needs: build-multiarch
     runs-on: ubuntu-latest
     steps:
       - name: Checkout main branch
