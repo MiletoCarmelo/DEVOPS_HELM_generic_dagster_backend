@@ -1,4 +1,5 @@
 # Chart.yaml
+
 apiVersion: v2
 name: my-application
 description: A Helm chart for my application
