@@ -2,19 +2,17 @@ FROM python:3.11-slim
 ARG DAGSTER_VERSION=1.6.0
 ENV DAGSTER_HOME=/opt/dagster/dagster_home
 
-# Création du répertoire DAGSTER_HOME et des sous-répertoires nécessaires
-RUN mkdir -p $DAGSTER_HOME
-
 # Création des répertoires nécessaires
-RUN mkdir -p $DAGSTER_HOME/storage \
+RUN mkdir -p \
+    $DAGSTER_HOME \
     $DAGSTER_HOME/history \
     $DAGSTER_HOME/schedules \
     $DAGSTER_HOME/compute_logs \
     /opt/dagster/app
 
-# Copie de la configuration
+# Copie des fichiers de configuration
 COPY dagster.yaml $DAGSTER_HOME/
-COPY app/* /opt/dagster/app/
+COPY app/repository.py /opt/dagster/app/
 
 # Installation des packages
 RUN pip install \
