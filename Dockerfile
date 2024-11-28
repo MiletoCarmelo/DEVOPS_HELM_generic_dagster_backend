@@ -31,9 +31,6 @@ RUN mkdir -p \
     /opt/dagster/app
 
 
-# Copie des fichiers de configuration
-COPY dagster.yaml workspace.yaml $DAGSTER_HOME/
-
 # Permissions
 RUN chmod -R 777 $DAGSTER_HOME
 
