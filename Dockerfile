@@ -14,7 +14,7 @@ RUN mkdir -p $DAGSTER_HOME/storage \
 
 # Copie de la configuration
 COPY dagster.yaml $DAGSTER_HOME/
-COPY app/repository.py /opt/dagster/app/
+COPY app/* /opt/dagster/app/
 
 # Installation des packages
 RUN pip install \
