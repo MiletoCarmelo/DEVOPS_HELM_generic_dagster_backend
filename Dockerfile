@@ -1,6 +1,13 @@
 FROM python:3.11-slim
 ENV DAGSTER_HOME=/opt/dagster/dagster_home
 
+# Installation des dépendances système pour PostgreSQL
+RUN apt-get update && apt-get install -y \
+    gcc \
+    python3-dev \
+    libpq-dev \
+    && rm -rf /var/lib/apt/lists/*
+
 # Installation des packages
 RUN pip install \
     dagster \
@@ -12,7 +19,8 @@ RUN pip install \
     dagster-celery-k8s \
     dagster-gcp \
     dagster-graphql \
-    dagster-webserver
+    dagster-webserver \
+    psycopg2-binary
 
 # Création des répertoires nécessaires
 RUN mkdir -p \
@@ -22,9 +30,9 @@ RUN mkdir -p \
     $DAGSTER_HOME/compute_logs \
     /opt/dagster/app
 
+
 # Copie des fichiers de configuration
 COPY dagster.yaml workspace.yaml $DAGSTER_HOME/
-# COPY app/repository.py /opt/dagster/app/
 
 # Permissions
 RUN chmod -R 777 $DAGSTER_HOME
