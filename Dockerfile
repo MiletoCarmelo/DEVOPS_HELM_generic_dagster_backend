@@ -29,9 +29,6 @@ RUN pip install \
     dagster-graphql \
     dagster-webserver
 
-# Exemple de repository minimal
-COPY repository.py /opt/dagster/app/
-
 # Permissions
 RUN chmod -R 777 $DAGSTER_HOME
 
