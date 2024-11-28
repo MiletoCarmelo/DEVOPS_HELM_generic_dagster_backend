@@ -30,6 +30,8 @@ RUN mkdir -p \
     $DAGSTER_HOME/compute_logs \
     /opt/dagster/app
 
+# Créer un fichier dagster.yaml dans l'image Docker
+RUN echo "scheduler:\n  module: dagster.core.scheduler\n  class: DagsterDaemonScheduler" > /opt/dagster/dagster_home/dagster.yaml
 
 # Permissions
 RUN chmod -R 777 $DAGSTER_HOME
