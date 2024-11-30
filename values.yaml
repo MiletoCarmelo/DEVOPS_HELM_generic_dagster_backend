@@ -23,6 +23,7 @@ env:
       secretKeyRef:
         name: dagster-postgresql-secret
         key: POSTGRES_DB
+        
 
 # Configuration de l'image
 containers:

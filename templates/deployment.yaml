@@ -42,5 +42,16 @@ spec:
             limits:
               memory: {{ .Values.containers.resources.limits.memory  }}
               cpu: {{  .Values.containers.resources.limits.cpu }}
+{{- if .Values.env }}
+          env:
+            {{- range .Values.env }}
+            - name: {{ .name }}
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .valueFrom.secretKeyRef.name }}
+                  key: {{ .valueFrom.secretKeyRef.key }}
+            {{- end }}
+          {{- end }}
+            
 {{- end }}
 {{- end }}
