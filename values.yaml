@@ -11,17 +11,17 @@ env:
   - name: POSTGRES_USER
     valueFrom:
       secretKeyRef:
-        name: postgres-secrets
+        name: dagster-postgresql-secret
         key: POSTGRES_USER
   - name: POSTGRES_PASSWORD
     valueFrom:
       secretKeyRef:
-        name: postgres-secrets
+        name: dagster-postgresql-secret
         key: POSTGRES_PASSWORD
   - name: POSTGRES_DB
     valueFrom:
       secretKeyRef:
-        name: postgres-secrets
+        name: dagster-postgresql-secret
         key: POSTGRES_DB
 
 # Configuration de l'image
