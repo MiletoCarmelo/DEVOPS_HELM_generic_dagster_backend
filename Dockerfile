@@ -8,7 +8,7 @@ RUN apt-get update && apt-get install -y \
     libpq-dev \
     && rm -rf /var/lib/apt/lists/*
 
-# Installation des packages
+# Installation des packages Dagster et autres
 RUN pip install \
     dagster \
     dagster-azure \
@@ -28,11 +28,10 @@ RUN mkdir -p \
     $DAGSTER_HOME/history \
     $DAGSTER_HOME/schedules \
     $DAGSTER_HOME/compute_logs \
-    /opt/dagster/app \
-    /opt/dagster/dagster_home
+    /opt/dagster/app
 
-# Créer un fichier dagster.yaml dans l'image Docker
-RUN echo "scheduler:\n  module: dagster.core.scheduler\n  class: DagsterDaemonScheduler" > /opt/dagster/dagster_home/dagster.yaml
+# Copier le fichier dagster.yaml si disponible (fallback local, sera remplacé par ConfigMap)
+COPY dagster.yaml $DAGSTER_HOME/dagster.yaml
 
 # Permissions
 RUN chmod -R 777 $DAGSTER_HOME
