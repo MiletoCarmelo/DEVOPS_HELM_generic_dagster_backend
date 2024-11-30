@@ -3,9 +3,9 @@ environment: generic
 replicas: 1
 
 containers:
- name: dagster
- image: ghcr.io/miletocarmelo/devpos_helm_generic_dagster_backend/dagster
- tags: latest
+ # name: dagster
+ # image: ghcr.io/miletocarmelo/devpos_helm_generic_dagster_backend/dagster
+ # tags: latest
  ports:
    containerPort: 3000
  resources:
