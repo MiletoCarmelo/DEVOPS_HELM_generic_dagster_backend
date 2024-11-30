@@ -19,4 +19,4 @@ containers:
 service:
  type: ClusterIP
  port: 3000
- targetPort: http
+ targetPort: 3000
