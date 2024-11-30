@@ -3,7 +3,7 @@ environment: generic
 replicas: 1
 
 # Configuration du fichier dagster.yaml
-filePath: "dagster.yaml"
+filePath: "./dagster.yaml"
 
 
 # Variables d'environnement
