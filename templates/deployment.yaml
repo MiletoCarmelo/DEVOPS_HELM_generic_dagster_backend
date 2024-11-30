@@ -25,11 +25,11 @@ spec:
         {{- if .Values.containers.name }}
         - name: {{ .Values.containers.name }}
           image: {{ .Values.containers.image }}:{{ .Values.containers.tags }}
-        {{- end}}
 {{- if hasSuffix "latest" .Values.containers.tags }}
           imagePullPolicy: Always
 {{- else }}
           imagePullPolicy: IfNotPresent
+{{- end}}
 {{- end}}
           ports:
             - name: http
