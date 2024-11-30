@@ -5,6 +5,25 @@ replicas: 1
 # Configuration du fichier dagster.yaml
 filePath: "dagster.yaml"
 
+
+# Variables d'environnement
+env:
+  - name: POSTGRES_USER
+    valueFrom:
+      secretKeyRef:
+        name: postgres-secrets
+        key: POSTGRES_USER
+  - name: POSTGRES_PASSWORD
+    valueFrom:
+      secretKeyRef:
+        name: postgres-secrets
+        key: POSTGRES_PASSWORD
+  - name: POSTGRES_DB
+    valueFrom:
+      secretKeyRef:
+        name: postgres-secrets
+        key: POSTGRES_DB
+
 # Configuration de l'image
 containers:
   name: dagster
