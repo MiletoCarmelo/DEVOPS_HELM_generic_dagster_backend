@@ -47,7 +47,7 @@ jobs:
             ${{ env.REGISTRY_NAME }}/${{ env.IMAGE_NAME_LOWER }}/dagster:latest
 
   release-chart:
-    # needs: build-multiarch
+    needs: build-multiarch
     runs-on: ubuntu-latest
     steps:
       - name: Checkout main branch
