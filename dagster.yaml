@@ -2,24 +2,49 @@ scheduler:
   module: dagster.core.scheduler
   class: DagsterDaemonScheduler
 
+run_coordinator:
+  module: dagster.core.run_coordinator
+  class: QueuedRunCoordinator
+
+run_launcher:
+  module: dagster.core.launcher
+  class: DefaultRunLauncher
+
 run_storage:
-  module: dagster.core.storage.local_run_storage
-  class: LocalRunStorage
+  module: dagster_postgres.run_storage
+  class: PostgresRunStorage
   config:
-    base_dir: /opt/dagster/dagster_home/runs
+    postgres_db:
+      hostname: postgres-58b495dd4d7bdm7
+      username: ${POSTGRES_USER}  # correspond au secret
+      password: ${POSTGRES_PASSWORD}  # correspond au secret
+      db_name: ${POSTGRES_DB}  # correspond au secret
+      port: 5432
 
 event_log_storage:
-  module: dagster.core.storage.local_event_log_storage
-  class: LocalEventLogStorage
+  module: dagster_postgres.event_log
+  class: PostgresEventLogStorage
   config:
-    base_dir: /opt/dagster/dagster_home/logs
+    postgres_db:
+      hostname: postgres-58b495dd4d7bdm7
+      username: ${POSTGRES_USER}
+      password: ${POSTGRES_PASSWORD}
+      db_name: ${POSTGRES_DB}
+      port: 5432
+
+schedule_storage:
+  module: dagster_postgres.schedule_storage
+  class: PostgresScheduleStorage
+  config:
+    postgres_db:
+      hostname: postgres-58b495dd4d7bdm7
+      username: ${POSTGRES_USER}
+      password: ${POSTGRES_PASSWORD}
+      db_name: ${POSTGRES_DB}
+      port: 5432
 
 compute_logs:
   module: dagster.core.storage.local_compute_log_manager
   class: LocalComputeLogManager
   config:
     base_dir: /opt/dagster/dagster_home/compute_logs
-
-run_launcher:
-  module: dagster.core.launcher
-  class: DefaultRunLauncher

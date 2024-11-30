@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: dagster-dev-config
+  namespace: {{ .Release.Namespace }}
+  labels:
+    app.kubernetes.io/instance: {{ .Values.module }}-{{ .Values.environment }}
+data:
+  dagster.yaml: |
+    {{ .Files.Get .Values.filePath | indent 4 }}

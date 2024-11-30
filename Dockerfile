@@ -31,7 +31,7 @@ RUN mkdir -p \
     /opt/dagster/app
 
 # Copier le fichier dagster.yaml si disponible (fallback local, sera remplacé par ConfigMap)
-COPY dagster.yaml $DAGSTER_HOME/dagster.yaml
+COPY dagster-components/dagster.yaml $DAGSTER_HOME/dagster.yaml
 
 # Permissions
 RUN chmod -R 777 $DAGSTER_HOME
