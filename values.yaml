@@ -19,45 +19,12 @@ containers:
     limits:
       memory: "512Mi" 
       cpu: "200m"
-
-
-serviceAccount:
-  create: true
-  name: dagster-dev
     
 # Configuration du service
 service:
   type: ClusterIP
   port: 3000
   targetPort: 3000
-
-# Variables d'environnement
-env:
-  - name: DAGSTER_HOME
-    value: /opt/dagster/dagster_home
-  - name: POSTGRES_USER
-    valueFrom:
-      secretKeyRef:
-        name: postgres-secrets
-        key: POSTGRES_USER
-  - name: POSTGRES_PASSWORD
-    valueFrom:
-      secretKeyRef:
-        name: postgres-secrets
-        key: POSTGRES_PASSWORD
-  - name: POSTGRES_DB
-    valueFrom:
-      secretKeyRef:
-        name: postgres-secrets
-        key: POSTGRES_DB
-
-# Configuration PostgreSQL
-postgresql:
-  enabled: false
-  external:
-    host: "postgres-58b495dd4d7bdm7"
-    port: 5432
-    database: "dagster"
 
 # Configuration des volumes
 volumes:
