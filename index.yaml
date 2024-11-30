@@ -3,9 +3,9 @@ entries:
   generic-dagster-backend:
   - apiVersion: v2
     appVersion: 1.0.0
-    created: "2024-11-30T12:18:36.626725607Z"
+    created: "2024-11-30T12:27:48.442373937Z"
     description: A Helm chart for my application
-    digest: 96ffadfb55e0062996ddc7de5dac71c925e755067a2371a0942fcc77fe7f49fa
+    digest: e33951c142f161cb80e272bef1fae188e39330096e69b9fe1172311eb91f1484
     name: generic-dagster-backend
     urls:
     - https://raw.githubusercontent.com/MiletoCarmelo/DEVOPS_HELM_generic_dagster_backend/github-pages/generic-dagster-backend-0.1.0.tgz
@@ -20,4 +20,4 @@ entries:
     urls:
     - https://raw.githubusercontent.com/MiletoCarmelo/DEVPOS_HELM_generic_dagster_backend/github-pages/my-application-0.1.0.tgz
     version: 0.1.0
-generated: "2024-11-30T12:18:36.625468727Z"
+generated: "2024-11-30T12:27:48.440782614Z"
