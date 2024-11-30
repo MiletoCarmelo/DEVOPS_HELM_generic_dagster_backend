@@ -15,10 +15,10 @@ run_storage:
   class: PostgresRunStorage
   config:
     postgres_db:
-      hostname: postgres-58b495dd4d7bdm7
-      username: ${POSTGRES_USER}  # correspond au secret
-      password: ${POSTGRES_PASSWORD}  # correspond au secret
-      db_name: ${POSTGRES_DB}  # correspond au secret
+      hostname: postgres.postgres.svc.cluster.local
+      username: ${POSTGRES_USER}
+      password: ${POSTGRES_PASSWORD}
+      db_name: ${POSTGRES_DB}
       port: 5432
 
 event_log_storage:
@@ -26,7 +26,7 @@ event_log_storage:
   class: PostgresEventLogStorage
   config:
     postgres_db:
-      hostname: postgres-58b495dd4d7bdm7
+      hostname: postgres.postgres.svc.cluster.local
       username: ${POSTGRES_USER}
       password: ${POSTGRES_PASSWORD}
       db_name: ${POSTGRES_DB}
@@ -37,7 +37,7 @@ schedule_storage:
   class: PostgresScheduleStorage
   config:
     postgres_db:
-      hostname: postgres-58b495dd4d7bdm7
+      hostname: postgres.postgres.svc.cluster.local
       username: ${POSTGRES_USER}
       password: ${POSTGRES_PASSWORD}
       db_name: ${POSTGRES_DB}
