@@ -59,6 +59,9 @@ volumes:
       items:
         - key: dagster.yaml
           path: dagster.yaml
+  - name: workspace-volume
+    configMap:
+      name: dagster-workspace
 
 # Configuration des montages de volumes
 volumeMounts:
@@ -69,3 +72,6 @@ volumeMounts:
   - name: dagster-dev-config
     mountPath: /opt/dagster/dagster_home/dagster.yaml
     subPath: dagster.yaml
+  - name: workspace-volume
+    mountPath: /app/workspace.yaml
+    subPath: workspace.yaml
