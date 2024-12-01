@@ -8,3 +8,5 @@ metadata:
 data:
   dagster.yaml: |
     {{ .Files.Get .Values.filePath | indent 4 }}
+
+    

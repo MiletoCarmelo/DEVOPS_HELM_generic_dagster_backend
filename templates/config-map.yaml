@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: dagster-app-code
+  namespace: {{ .Values.module }}-{{ .Values.environment }}
+  labels:
+    {{- include "label-generator" . | nindent 4 }}
+    module: {{ .Values.module }}
+data: {}  # ConfigMap vide
