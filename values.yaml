@@ -30,8 +30,6 @@ containers:
   name: dagster
   image: ghcr.io/miletocarmelo/devops_helm_generic_dagster_backend/dagster
   tags: latest
-  command: ["dagster-webserver"]
-  args: ["-w", "/app/workspace.yaml"]
   ports:
     containerPort: 3000
   resources:
