@@ -3,9 +3,12 @@ kind: PersistentVolumeClaim
 metadata:
   name: dagster-storage
   namespace: {{ .Values.module }}-{{ .Values.environment }}
+  labels:
+    {{- include "label-generator" . | nindent 4 }}
+    module: {{ .Values.module }}
 spec:
   accessModes:
     - ReadWriteOnce
   resources:
     requests:
-      storage: {{ .Values.storage.size | default "1Gi" }}
+      storage: {{ .Values.persistentVolume.size | default "1Gi" }}
