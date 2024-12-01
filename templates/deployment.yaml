@@ -25,6 +25,8 @@ spec:
         {{- if .Values.containers.name }}
         - name: {{ .Values.containers.name }}
           image: {{ .Values.containers.image }}:{{ .Values.containers.tags }}
+          command: {{ .Values.containers.command }}
+          args: {{ .Values.containers.args }}
           {{- if hasSuffix "latest" .Values.containers.tags }}
           imagePullPolicy: Always
           {{- else }}
