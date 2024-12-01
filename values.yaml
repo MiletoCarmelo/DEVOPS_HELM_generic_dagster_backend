@@ -46,6 +46,9 @@ service:
   port: 3000
   targetPort: 3000
 
+storage:
+  size: 1Gi
+  
 # Configuration des volumes
 volumes:
   - name: dagster-dev-app
