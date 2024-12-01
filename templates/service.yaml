@@ -5,6 +5,9 @@ metadata:
   labels:
     {{-  include "label-generator" . | nindent 4 }}
     module: {{ .Values.module }}
+  {{- if .Values.service.tailscale.enabled }}
+    tailscale/expose: "true"  # Annotation pour Tailscale
+  {{- end }}
 spec:
   type: {{ .Values.service.type | default "ClusterIP" }}
   ports:
