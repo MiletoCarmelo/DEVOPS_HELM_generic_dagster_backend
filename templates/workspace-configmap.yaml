@@ -1,3 +1,4 @@
+# templates/configmap.yaml
 apiVersion: v1
 kind: ConfigMap
 metadata:
@@ -6,9 +7,4 @@ metadata:
   labels:
     app.kubernetes.io/instance: {{ .Values.module }}-{{ .Values.environment }}
 data:
-  workspace.yaml: |
-    load_from:
-      - grpc_server:
-          host: pipeline-successtest
-          port: 4000
-          location_name: "pipeline-successtest"
+  workspace.yaml: ""  # Laissé vide intentionnellement
