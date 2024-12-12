@@ -2,6 +2,6 @@
 
 apiVersion: v2
 name: generic-dagster-backend
-description: A Helm chart for my application
+description: A generic Helm chart for ib gateway for aarch64 (raspberry pi 5)
 version: 0.1.5  # augmenter la version
 appVersion: "1.0.0"
