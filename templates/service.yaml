@@ -6,6 +6,7 @@ metadata:
     {{-  include "label-generator" . | nindent 4 }}
     module: {{ .Values.module }}
   {{- if .Values.service.tailscale.enabled }}
+  anotations:
     tailscale/expose: "true"  # Annotation pour Tailscale
   {{- end }}
 spec:
